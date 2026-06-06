@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* Removed non-standard @theme inline block */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll on animations */
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* Adjust for fixed Navbar height */
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-fast {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 1.5s ease-in-out infinite;
+}
+
+
+/* Glassmorphism enhancements */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Button glow effect */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px; /* Slightly larger than the button */
+  background: linear-gradient(45deg, #9333ea, #ec4899, #9333ea);
+  border-radius: inherit;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: -1;
+}
+
+.btn-glow:hover::before {
+  opacity: 1;
+  transform: scale(1.05); /* Subtle scale on hover for glow */
+}
+
+/* Project card spotlight effect */
+.project-card-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.project-card-spotlight:hover::before {
+  width: 200%; /* Make it large enough to cover the card */
+  height: 200%;
+  opacity: 1;
+}
+
+/* Navbar active link indicator */
+.navbar-link.active {
+  position: relative;
+  color: #a78bfa; /* Purple-300 */
+}
+
+.navbar-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #a78bfa, #d8b4fe); /* Purple gradient */
+  border-radius: 9999px;
+}
