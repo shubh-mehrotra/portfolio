@@ -32,7 +32,7 @@ const SpecializedIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 
-export const rakshitaProfile: Profile = {
+export const rakshuProfile: Profile = {
   personalInfo: {
     name: "Rakshita Mehra",
     title: "Executive Nutritionist & Dietitian",
